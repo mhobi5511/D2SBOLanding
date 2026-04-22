@@ -15,9 +15,11 @@
   --text: #c5d2e2;
   --text-muted: #8da2bb;
   --border: #22324a;
-  --accent: #3cc8b4;
-  --accent-dark: #2ea694;
-  --accent-soft: rgba(60, 200, 180, 0.12);
+  --accent: #4f7cff;
+  --accent-dark: #1d46cd;
+  --accent-soft: rgba(79, 124, 255, 0.12);
+  --accent-warm: #ff9c2f;
+  --accent-warm-soft: rgba(255, 156, 63, 0.16);
   --shadow: 0 24px 54px rgba(2, 8, 23, 0.36);
 }
 
