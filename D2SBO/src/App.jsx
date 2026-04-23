@@ -119,14 +119,6 @@ function App() {
           <div className="container">
             <div className="hero-content">
               <div className="hero-copy">
-                <div className="hero-logo-strip" aria-label="Drums2Streets und The Blackouts Logos">
-                  <div className="hero-logo-card hero-logo-card-d2s">
-                    <img src={drumsLogo} alt="Drums2Streets Logo" />
-                  </div>
-                  <div className="hero-logo-card hero-logo-card-blackouts">
-                    <img src={blackoutsLogo} alt="The Blackouts Logo" />
-                  </div>
-                </div>
                 <h1>Du willst nicht nur zusehen. Du willst Teil davon sein.</h1>
                 <p className="hero-text">
                   Du hast uns am Tambourenfest Appenzell erlebt? Dann bewirb dich jetzt für Drums2Streets oder The Blackouts und werde Teil einer modernen Showgruppe mit Energie, Präzision und echter Bühnenpräsenz.
