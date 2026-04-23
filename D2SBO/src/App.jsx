@@ -3,6 +3,8 @@ import heroDrumsImage from './assets/d2s-hero.jpg'
 import heroBlackoutImage from './assets/blackouts-hero.jpg'
 import drumsCardImage from './assets/d2s-card.jpg'
 import blackoutCardImage from './assets/blackouts-card.jpg'
+import drumsLogo from './assets/D2S_Logo-01.jpg'
+import blackoutsLogo from './assets/logo Blackouts.png'
 import './App.css'
 
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/REPLACE_ME'
@@ -88,14 +90,22 @@ function App() {
   }
 
   return (
-    <div className="app">
+    <div className="app" id="top">
       <header className="site-header">
         <div className="container nav">
-          <div className="brand">
-            <span>Drums2Streets</span>
+          <a className="brand" href="#top" aria-label="Drums2Streets und The Blackouts">
+            <span className="brand-logo-pair" aria-hidden="true">
+              <span className="brand-logo-tile brand-logo-tile-d2s">
+                <img src={drumsLogo} alt="" />
+              </span>
+              <span className="brand-logo-tile brand-logo-tile-blackouts">
+                <img src={blackoutsLogo} alt="" />
+              </span>
+            </span>
+            <span className="brand-text">Drums2Streets</span>
             <span className="brand-separator">/</span>
-            <span>The Blackouts</span>
-          </div>
+            <span className="brand-text">The Blackouts</span>
+          </a>
           <nav className="nav-links" aria-label="Hauptnavigation">
             <a href="#gruppen">Gruppen</a>
             <a href="#warum">Warum mitmachen</a>
@@ -109,6 +119,14 @@ function App() {
           <div className="container">
             <div className="hero-content">
               <div className="hero-copy">
+                <div className="hero-logo-strip" aria-label="Drums2Streets und The Blackouts Logos">
+                  <div className="hero-logo-card hero-logo-card-d2s">
+                    <img src={drumsLogo} alt="Drums2Streets Logo" />
+                  </div>
+                  <div className="hero-logo-card hero-logo-card-blackouts">
+                    <img src={blackoutsLogo} alt="The Blackouts Logo" />
+                  </div>
+                </div>
                 <h1>Du willst nicht nur zusehen. Du willst Teil davon sein.</h1>
                 <p className="hero-text">
                   Du hast uns am Tambourenfest Appenzell erlebt? Dann bewirb dich jetzt für Drums2Streets oder The Blackouts und werde Teil einer modernen Showgruppe mit Energie, Präzision und echter Bühnenpräsenz.
@@ -152,7 +170,12 @@ function App() {
                 <div className="card-image">
                   <img src={drumsCardImage} alt="Drums2Streets Performance" />
                 </div>
-                <h3>Drums2Streets</h3>
+                <div className="formation-card-head">
+                  <div className="formation-logo formation-logo-d2s">
+                    <img src={drumsLogo} alt="Drums2Streets Logo" />
+                  </div>
+                  <h3>Drums2Streets</h3>
+                </div>
                 <p>
                   Drums2Streets bringt klassische Trommelkunst raus aus dem traditionellen Rahmen und rein in Show, Entertainment und Event-Erlebnis. Die Gruppe steht für Energie, Kreativität, Streetstyle und eine Performance, die das Publikum mitreißt.
                 </p>
@@ -175,7 +198,12 @@ function App() {
                 <div className="card-image">
                   <img src={blackoutCardImage} alt="The Blackouts LED-Show" />
                 </div>
-                <h3>The Blackouts</h3>
+                <div className="formation-card-head">
+                  <div className="formation-logo formation-logo-blackouts">
+                    <img src={blackoutsLogo} alt="The Blackouts Logo" />
+                  </div>
+                  <h3>The Blackouts</h3>
+                </div>
                 <p>
                   The Blackouts verbinden Musik, Bewegung, Licht und modernste LED-Technologie zu einer hochinszenierten Performance. Die Show funktioniert international, ohne Sprache, und steht für Präzision, Innovation und maximalen visuellen Impact.
                 </p>
