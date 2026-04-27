@@ -973,6 +973,12 @@
   }
 }
 
+@media (max-width: 860px) {
+  #warum .cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .footer-content {
   display: flex;
   align-items: center;
