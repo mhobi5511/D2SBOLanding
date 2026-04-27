@@ -665,6 +665,10 @@
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+#warum .cards-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .step-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
@@ -765,6 +769,10 @@
   line-height: 1.75;
 }
 
+.section-grid .recruit-card p {
+  margin-bottom: 1.35rem;
+}
+
 .badge-list {
   display: flex;
   flex-wrap: wrap;
@@ -787,6 +795,14 @@
   gap: 1.2rem;
   max-width: 760px;
   margin: 0 auto;
+}
+
+#wen .section-heading p {
+  margin-top: 1rem;
+}
+
+#bewerbung .section-heading p {
+  margin-top: 1rem;
 }
 
 .step-card {
@@ -945,6 +961,10 @@
   }
 
   .cards-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #warum .cards-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 

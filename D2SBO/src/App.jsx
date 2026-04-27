@@ -26,6 +26,10 @@ const joinCards = [
     title: 'Show mit Anspruch',
     text: 'Hier geht es nicht nur ums Trommeln, sondern um Qualität, Energie und Wirkung.',
   },
+  {
+    title: 'Auftritte mit Gage',
+    text: 'Für jeden Auftritt erhältst du eine Gage. Dein Einsatz auf der Bühne wird also auch finanziell wertgeschätzt.',
+  },
 ]
 
 const processSteps = [
@@ -237,7 +241,10 @@ function App() {
           <div className="container">
             <div className="section-heading">
               <h2>Wen wir suchen</h2>
-              <p>Nicht Perfektion ist entscheidend, sondern Energie, Verlässlichkeit und Lust auf Performance.</p>
+              <p>
+                Nicht Perfektion ist entscheidend, sondern Energie, Verlässlichkeit und Lust auf Performance.
+                Unsere Proben finden in Felben-Wellhausen statt, direkt bei Frauenfeld und gut mit dem ÖV erreichbar.
+              </p>
             </div>
             <ul className="check-list role-list">
               <li>motivierte Persönlichkeiten mit Interesse an Trommeln, Show oder Performance</li>
