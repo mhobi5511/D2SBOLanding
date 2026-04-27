@@ -1337,14 +1337,16 @@
 
   .brand {
     max-width: 100%;
+    font-size: 0.82rem;
+    gap: 0.3rem 0.45rem;
   }
 
   .brand-text {
-    display: none;
+    display: inline;
   }
 
   .brand-separator {
-    display: none;
+    display: inline;
   }
 
   .nav-actions {
