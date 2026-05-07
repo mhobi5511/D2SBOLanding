@@ -1,4 +1,4 @@
-﻿import { useState } from 'react'
+﻿import { useEffect, useRef, useState } from 'react'
 import heroDrumsImage from './assets/d2s-hero.jpg'
 import heroBlackoutImage from './assets/blackouts-hero.jpg'
 import drumsCardImage from './assets/d2s-card.jpg'
@@ -43,6 +43,39 @@ function App() {
   const [status, setStatus] = useState('idle')
   const [message, setMessage] = useState('')
   const [submitting, setSubmitting] = useState(false)
+  const [mobileNavOpen, setMobileNavOpen] = useState(false)
+  const [heroInView, setHeroInView] = useState(true)
+  const [footerInView, setFooterInView] = useState(false)
+  const heroRef = useRef(null)
+  const footerRef = useRef(null)
+
+  const showFloatingApply = !heroInView && !footerInView
+
+  useEffect(() => {
+    const hero = heroRef.current
+    const footer = footerRef.current
+
+    if (!hero || !footer) {
+      return undefined
+    }
+
+    const heroObserver = new IntersectionObserver(
+      ([entry]) => setHeroInView(entry.isIntersecting),
+      { threshold: 0 },
+    )
+    const footerObserver = new IntersectionObserver(
+      ([entry]) => setFooterInView(entry.isIntersecting),
+      { threshold: 0.12 },
+    )
+
+    heroObserver.observe(hero)
+    footerObserver.observe(footer)
+
+    return () => {
+      heroObserver.disconnect()
+      footerObserver.disconnect()
+    }
+  }, [])
 
   const handleFieldInvalid = (event) => {
     event.preventDefault()
@@ -101,7 +134,7 @@ function App() {
     <div className="app" id="top">
       <header className="site-header">
         <div className="container nav">
-          <a className="brand" href="#top" aria-label="Drums2Streets und The Blackouts">
+          <a className="brand" href="#top" aria-label="Drums2Streets und The Blackouts" onClick={() => setMobileNavOpen(false)}>
             <span className="brand-logo-pair" aria-hidden="true">
               <span className="brand-logo-tile brand-logo-tile-d2s">
                 <img src={drumsLogo} alt="" />
@@ -114,16 +147,32 @@ function App() {
             <span className="brand-separator">/</span>
             <span className="brand-text">The Blackouts</span>
           </a>
-          <nav className="nav-links" aria-label="Hauptnavigation">
-            <a href="#gruppen">Gruppen</a>
-            <a href="#warum">Warum mitmachen</a>
-            <a href="#bewerbung">Bewerbung</a>
+          <button
+            className={`menu-toggle${mobileNavOpen ? ' is-open' : ''}`}
+            type="button"
+            aria-label={mobileNavOpen ? 'Navigation schliessen' : 'Navigation öffnen'}
+            aria-expanded={mobileNavOpen}
+            aria-controls="main-navigation"
+            onClick={() => setMobileNavOpen((isOpen) => !isOpen)}
+          >
+            <span aria-hidden="true" />
+            <span aria-hidden="true" />
+            <span aria-hidden="true" />
+          </button>
+          <nav
+            className={`nav-links${mobileNavOpen ? ' is-open' : ''}`}
+            id="main-navigation"
+            aria-label="Hauptnavigation"
+          >
+            <a href="#gruppen" onClick={() => setMobileNavOpen(false)}>Gruppen</a>
+            <a href="#warum" onClick={() => setMobileNavOpen(false)}>Warum mitmachen</a>
+            <a href="#bewerbung" onClick={() => setMobileNavOpen(false)}>Bewerbung</a>
           </nav>
         </div>
       </header>
 
       <main>
-        <section className="hero-section">
+        <section className="hero-section" ref={heroRef}>
           <div className="container">
             <div className="hero-content">
               <div className="hero-copy">
@@ -422,16 +471,15 @@ function App() {
         </section>
       </main>
 
-      <footer className="site-footer" id="footer">
+      <footer className="site-footer" id="footer" ref={footerRef}>
         <div className="container footer-content">
           <div className="footer-brand">Drums2Streets / The Blackouts</div>
-          <div className="footer-links">
-            <a href="#bewerbung">Kontakt</a>
-            <a href="#footer">Impressum</a>
-            <a href="#footer">Datenschutz</a>
-          </div>
         </div>
       </footer>
+
+      <div className={`floating-apply-footer${showFloatingApply ? ' is-visible' : ''}`} aria-hidden={!showFloatingApply}>
+        <a className="button button-primary" href="#bewerbung">Jetzt bewerben</a>
+      </div>
     </div>
   )
 }
