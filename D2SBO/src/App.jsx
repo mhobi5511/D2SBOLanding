@@ -473,7 +473,19 @@ function App() {
 
       <footer className="site-footer" id="footer" ref={footerRef}>
         <div className="container footer-content">
-          <div className="footer-brand">Drums2Streets / The Blackouts</div>
+          <a className="brand footer-brand" href="#top" aria-label="Drums2Streets und The Blackouts">
+            <span className="brand-logo-pair" aria-hidden="true">
+              <span className="brand-logo-tile brand-logo-tile-d2s">
+                <img src={drumsLogo} alt="" />
+              </span>
+              <span className="brand-logo-tile brand-logo-tile-blackouts">
+                <img src={blackoutsLogo} alt="" />
+              </span>
+            </span>
+            <span className="brand-text">Drums2Streets</span>
+            <span className="brand-separator">/</span>
+            <span className="brand-text">The Blackouts</span>
+          </a>
         </div>
       </footer>
 
