@@ -215,7 +215,13 @@ function App() {
               <p className="section-subtitle">Drums2Streets & The Blackouts – gemeinsam für High-Impact Live-Show</p>
             </div>
             <div className="section-grid">
-              <article className="recruit-card">
+              <a
+                className="recruit-card recruit-card-link"
+                href="https://drums2streets.ch/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Drums2Streets Homepage öffnen"
+              >
                 <div className="card-image">
                   <img src={drumsCardImage} alt="Drums2Streets Performance" />
                 </div>
@@ -241,9 +247,15 @@ function App() {
                   <span>Energie</span>
                   <span>Publikumseffekt</span>
                 </div>
-              </article>
+              </a>
 
-              <article className="recruit-card">
+              <a
+                className="recruit-card recruit-card-link"
+                href="https://www.theblackouts.ch/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="The Blackouts Homepage öffnen"
+              >
                 <div className="card-image">
                   <img src={blackoutCardImage} alt="The Blackouts LED-Show" />
                 </div>
@@ -269,7 +281,7 @@ function App() {
                   <span>International</span>
                   <span>Showproduktion</span>
                 </div>
-              </article>
+              </a>
             </div>
           </div>
         </section>

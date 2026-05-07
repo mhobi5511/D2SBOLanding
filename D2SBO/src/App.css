@@ -729,6 +729,25 @@
   padding: 1.8rem;
 }
 
+.recruit-card-link {
+  display: block;
+  color: inherit;
+  cursor: pointer;
+  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.recruit-card-link:hover,
+.recruit-card-link:focus-visible {
+  border-color: rgba(79, 124, 255, 0.44);
+  box-shadow: 0 28px 62px rgba(0, 0, 0, 0.28);
+  transform: translateY(-2px);
+}
+
+.recruit-card-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
 .card-image {
   margin-bottom: 1.35rem;
   overflow: hidden;
