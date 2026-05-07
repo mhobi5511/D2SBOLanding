@@ -1,16 +1,61 @@
-# React + Vite
+# D2SBO Landingpage
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React/Vite-Landingpage mit eigenem API-Endpunkt fuer Bewerbungen.
 
-Currently, two official plugins are available:
+## Entwicklung
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```bash
+npm install
+npm run dev
+```
 
-## React Compiler
+Das startet:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Vite-Frontend auf `http://localhost:5173`
+- API-Server auf `http://localhost:3001`
 
-## Expanding the ESLint configuration
+Das Frontend sendet Bewerbungen an `/api/application`. In der lokalen Entwicklung leitet Vite diese API-Requests an den Node-Server weiter. Auf Vercel wird `api/application.js` als Serverless Function ausgefuehrt.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Formularversand einrichten
+
+Kopiere zuerst die Beispielkonfiguration:
+
+```bash
+copy .env.example .env
+```
+
+Trage dann in `.env` die SMTP-Daten einer bestehenden Mailbox oder deines Hosters ein:
+
+```env
+PORT=3001
+APPLICATION_TO=marc.hobi@d2s.ch
+
+SMTP_HOST=smtp.example.com
+SMTP_PORT=587
+SMTP_SECURE=false
+SMTP_USER=your-smtp-user@example.com
+SMTP_PASS=your-smtp-password
+SMTP_FROM="D2S Bewerbung <your-smtp-user@example.com>"
+```
+
+Typische Werte:
+
+- `SMTP_HOST`: SMTP-Server deines Mailanbieters, z. B. vom Webhoster
+- `SMTP_PORT`: meistens `587`, bei SSL oft `465`
+- `SMTP_SECURE`: `false` fuer Port `587`, `true` fuer Port `465`
+- `SMTP_USER` / `SMTP_PASS`: Login der versendenden Mailbox
+- `SMTP_FROM`: Absender, der zur SMTP-Mailbox passen sollte
+- `APPLICATION_TO`: Empfaenger der Bewerbungen
+
+Wichtig: Die `.env` wird nicht eingecheckt. Sie enthaelt Passwoerter und bleibt nur auf Server/Lokalmaschine.
+
+## Produktion
+
+```bash
+npm run build
+npm start
+```
+
+Der Node-Server stellt dann die gebaute Seite aus `dist/` bereit und verarbeitet gleichzeitig `/api/application`.
+
+Auf Vercel brauchst du keinen eigenen laufenden Node-Server. Vercel baut das Vite-Frontend und fuehrt `api/application.js` automatisch als Serverless Function aus. Die SMTP-Werte muessen in Vercel als Environment Variables hinterlegt werden.

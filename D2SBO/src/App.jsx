@@ -7,7 +7,8 @@ import drumsLogo from './assets/D2S_Logo-01.jpg'
 import blackoutsLogo from './assets/logo Blackouts.png'
 import './App.css'
 
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/REPLACE_ME'
+const APPLICATION_ENDPOINT = '/api/application'
+const APPLICATION_EMAIL = 'marc.hobi@d2s.ch'
 
 const joinCards = [
   {
@@ -66,14 +67,17 @@ function App() {
     setMessage('')
 
     const formData = new FormData(event.target)
+    const application = Object.fromEntries(formData.entries())
+    application.consent = formData.get('consent') === 'on'
 
     try {
-      const response = await fetch(FORMSPREE_ENDPOINT, {
+      const response = await fetch(APPLICATION_ENDPOINT, {
         method: 'POST',
         headers: {
           Accept: 'application/json',
+          'Content-Type': 'application/json',
         },
-        body: formData,
+        body: JSON.stringify(application),
       })
 
       if (!response.ok) {
@@ -86,7 +90,7 @@ function App() {
       event.target.reset()
     } catch (error) {
       setStatus('error')
-      setMessage('Beim Senden ist etwas schiefgelaufen. Bitte versuche es erneut.')
+      setMessage(`Beim Senden ist etwas schiefgelaufen. Bitte versuche es erneut oder schreibe direkt an ${APPLICATION_EMAIL}.`)
       console.error(error)
     } finally {
       setSubmitting(false)
@@ -396,7 +400,7 @@ function App() {
                     Bewerbung absenden
                   </button>
                   <p className="form-note">
-                    Alternativ kannst du uns direkt an <a href="mailto:marc.hobi@gmx.ch">marc.hobi@gmx.ch</a> schreiben.
+                    Alternativ kannst du uns direkt an <a href={`mailto:${APPLICATION_EMAIL}`}>{APPLICATION_EMAIL}</a> schreiben.
                   </p>
                 </div>
 
